@@ -7,7 +7,8 @@ onready var cooldown: float = 0.0
 onready var play_cooldown: bool = false
 onready var damage: int = 0
 onready var scene_skull: PackedScene = preload("res://scenes/skull/skull.tscn")
-export onready var health = 10
+onready var player_position: Vector2 = player.position
+export var health = 10
 export var speed: float = 1
 export var damage_hit: int = 1
 
@@ -15,7 +16,7 @@ export var damage_hit: int = 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	var player_position: Vector2 = player.position
+	player_position = player.position
 	var normal = (player_position - position).normalized()
 	var target_velocity: Vector2 = normal*speed*100.0
 	velocity = lerp(velocity, target_velocity, 0.05)
@@ -44,7 +45,7 @@ func _physics_process(_delta):
 		var tween = create_tween()
 		tween.set_ease(Tween.EASE_OUT)
 		tween.set_trans(Tween.TRANS_QUINT)
-		tween.tween_property(self,"/modulate",Color.white,0.7)
+		tween.tween_property(self,"modulate",Color.white,0.7)
 		
 		damage = 0
 
