@@ -1,10 +1,18 @@
 extends KinematicBody2D
 
+
 export var speed: float = 5
+
 export var health: int = 10
 export var health_max: int = 10
+
 export var damage_hit: int = 4
 export var attack_speed: float = 0.3
+
+export var ritual_interval: float = 15.0
+export var ritual_cooldown: float = 0.0
+export var ritual_scene: PackedScene = preload("res://scenes/ritual/ritual.tscn")
+
 onready var velocity: Vector2
 onready var is_running: bool = false
 onready var get_damage: int = 0
@@ -13,6 +21,12 @@ onready var play_damage_cooldown: bool = false
 onready var damage_cooldown: float = 0.0
 onready var scene_skull: PackedScene = preload("res://scenes/skull/skull.tscn")
 onready var playing: bool = true
+
+
+func _process(delta):
+	#Update healthe bar:
+	get_node("HealthProgressBar").max_value=health_max
+	get_node("HealthProgressBar").value=health
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,6 +69,18 @@ func _physics_process(_delta):
 			health=addLife(area.get_parent().regeneration_amount)
 			area.get_parent().queue_free()
 		
+
+	#Ritual invoke:
+	ritualCast(_delta)
+
+
+
+func ritualCast(_delta):
+	if (ritual_cooldown==0.0):
+		add_child(ritual_scene.instance())
+	ritual_cooldown+=_delta
+	if (ritual_cooldown>ritual_interval):
+		ritual_cooldown = 0.0
 
 
 func die():
