@@ -22,11 +22,20 @@ onready var damage_cooldown: float = 0.0
 onready var scene_skull: PackedScene = preload("res://scenes/skull/skull.tscn")
 onready var playing: bool = true
 
+onready var golds: int = 0
+onready var meats: int = 0
+
 
 func _process(delta):
-	#Update healthe bar:
+	#Update health bar:
 	get_node("HealthProgressBar").max_value=health_max
 	get_node("HealthProgressBar").value=health
+	
+	#Update game ui:
+	get_node("GameUIControl").golds = golds
+	get_node("GameUIControl").meats = meats
+	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -61,12 +70,17 @@ func _physics_process(_delta):
 			play_damage_cooldown = false
 
 	getDamageOfEnemy()
-	#print("hp=",health)
-	var areas = get_node("Area2D").get_overlapping_areas()
+	
+	#  Get colletables:
+	var areas = get_node("ColletableArea2D").get_overlapping_areas()
 	#print("areas=",areas)
 	for area in areas:
 		if (area.name=="MeatArea2D"):
-			health=addLife(area.get_parent().regeneration_amount)
+			health=addLife(area.get_parent().amount)
+			meats+=1
+			area.get_parent().queue_free()
+		if (area.name=="GoldArea2D"):
+			golds+=area.get_parent().amount
 			area.get_parent().queue_free()
 		
 
@@ -104,7 +118,7 @@ func getDamageOfEnemy():
 
 func getDamageOfPlayer():
 	#print("groups=",get_tree().get_nodes_in_group("enemies"))
-	var bodies: Array = get_node("Area2D").get_overlapping_bodies()
+	var bodies: Array = get_node("SwordArea2D").get_overlapping_bodies()
 	for body in bodies:
 		if (body.is_in_group("enemies")):
 			var direction = (position-body.position).normalized()
@@ -124,3 +138,5 @@ func addLife(amount):
 	else:
 		hp+=amount
 	return hp
+
+

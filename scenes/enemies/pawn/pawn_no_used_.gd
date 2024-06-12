@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var velocity: Vector2
+onready var target_velocity: Vector2
 onready var is_running: bool = false
 export var speed = 5
 

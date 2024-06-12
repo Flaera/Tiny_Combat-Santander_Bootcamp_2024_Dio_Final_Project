@@ -1,4 +1,4 @@
 extends Node2D
 
 
-export var regeneration_amount: int = 5
+export var amount: int = 5

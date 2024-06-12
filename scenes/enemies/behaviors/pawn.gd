@@ -8,6 +8,10 @@ onready var play_cooldown: bool = false
 onready var damage: int = 0
 onready var scene_skull: PackedScene = preload("res://scenes/skull/skull.tscn")
 onready var player_position: Vector2 = player.position
+onready var damage_digit_scene: PackedScene = preload("res://scenes/enemies/damage_digit.tscn")
+onready var drop_meat: PackedScene = preload("res://scenes/meat/meat.tscn")
+onready var drop_gold: PackedScene = preload("res://scenes/gold/gold.tscn")
+onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 export var health = 10
 export var speed: float = 1
 export var damage_hit: int = 1
@@ -38,20 +42,36 @@ func _physics_process(_delta):
 
 	#Get damage from player:
 	if (damage!=0):
+		var damage_digit_marker = get_node("Position2D")
+		var scene_damage_instance = damage_digit_scene.instance()
+		scene_damage_instance.damage_value = int(damage)
+		add_child(scene_damage_instance)
 		health -= damage
-		print("hp_enemy=",health)
+		print("damage=",damage)
 		
 		modulate = Color.red
 		var tween = create_tween()
 		tween.set_ease(Tween.EASE_OUT)
 		tween.set_trans(Tween.TRANS_QUINT)
-		tween.tween_property(self,"modulate",Color.white,0.7)
+		tween.tween_property(self,"modulate",Color.white,1.5)
 		
 		damage = 0
 
 	# Dead:
 	if (health<=0):
+		#Drop skull
 		var scn: Object = scene_skull.instance()
 		scn.position = position
 		get_parent().add_child(scn)
+		#Drops colletables:
+		rng.randomize()
+		if (randi()%2==0):
+			var scene_drop_meat_instance = drop_meat.instance()
+			scene_drop_meat_instance.position = position
+			get_parent().add_child(scene_drop_meat_instance)
+		else:
+			var scene_drop_gold_instance = drop_gold.instance()
+			scene_drop_gold_instance.position = position
+			get_parent().add_child(scene_drop_gold_instance)
+		
 		queue_free()

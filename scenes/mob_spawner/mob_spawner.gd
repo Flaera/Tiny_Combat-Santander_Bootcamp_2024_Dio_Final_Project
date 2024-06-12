@@ -28,7 +28,7 @@ func _process(delta):
 		random_lib.randomize()
 		var monster = (monsters_array[random_lib.randi_range(0,2)]).instance()
 		add_child(monster)
-		print(monster)
+		#print(monster)
 		monster.position = getPoint()
 		cooldown = 0.0
 	
