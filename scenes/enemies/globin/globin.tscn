@@ -42,10 +42,12 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 15.0
+radius = 14.697
+height = 5.0
 
 [sub_resource type="CapsuleShape2D" id=9]
-radius = 19.0
+radius = 17.197
+height = 4.606
 
 [node name="Globin" type="KinematicBody2D" groups=["enemies"]]
 scale = Vector2( 2, 2 )
@@ -54,15 +56,21 @@ health = 24
 speed = 0.2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -29.197 )
 frames = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -15.865 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Area2DEnemy" type="Area2D" parent="."]
+position = Vector2( 0, -29.197 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DEnemy"]
+position = Vector2( 0, 13.407 )
+rotation = 1.5708
 shape = SubResource( 9 )
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 0, -29 )
+position = Vector2( 0, -65.025 )

@@ -10,7 +10,8 @@
 [ext_resource path="res://scenes/player/game_ui.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 17.0
+radius = 19.0
+height = 0.0
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -92,6 +93,7 @@ radius = 92.1358
 
 [sub_resource type="CapsuleShape2D" id=9]
 radius = 27.0
+height = 0.0
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.972549, 0, 0, 1 )
@@ -104,12 +106,13 @@ moving_platform_apply_velocity_on_leave = 2
 script = ExtResource( 2 )
 
 [node name="WarriorYellow" type="Sprite" parent="."]
-position = Vector2( 3, 0 )
+position = Vector2( 3, -30 )
 texture = ExtResource( 1 )
 hframes = 6
 vframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -13.707 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -124,13 +127,16 @@ anims/idle = ExtResource( 3 )
 anims/run = SubResource( 4 )
 
 [node name="SwordArea2D" type="Area2D" parent="."]
+position = Vector2( 0, -30 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordArea2D"]
 shape = SubResource( 5 )
 
 [node name="ColletableArea2D" type="Area2D" parent="."]
+position = Vector2( 0, -30 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ColletableArea2D"]
+position = Vector2( 0, 8.765 )
 shape = SubResource( 9 )
 
 [node name="HealthProgressBar" type="ProgressBar" parent="."]

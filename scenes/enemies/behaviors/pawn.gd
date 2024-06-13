@@ -47,7 +47,7 @@ func _physics_process(_delta):
 		scene_damage_instance.damage_value = int(damage)
 		add_child(scene_damage_instance)
 		health -= damage
-		print("damage=",damage)
+		#print("damage=",damage)
 		
 		modulate = Color.red
 		var tween = create_tween()

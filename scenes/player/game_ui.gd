@@ -19,6 +19,7 @@ func _process(delta):
 	if (seconds%60==0 and seconds!=0):
 		minutes+=1
 		seconds=0
+		time_elapsed_by_sec=0
 	if (minutes%60==0 and minutes!=0):
 		hours+=1
 		minutes = 0

@@ -43,24 +43,30 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 15.0
+height = 0.0
 
 [sub_resource type="CapsuleShape2D" id=9]
 radius = 19.0
+height = 0.0
 
 [node name="Pawn" type="KinematicBody2D" groups=["enemies"]]
 script = ExtResource( 2 )
 speed = 0.7
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -24.819 )
 frames = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -12.069 )
 shape = SubResource( 1 )
 
 [node name="Area2DEnemy" type="Area2D" parent="."]
+position = Vector2( 0, -24.819 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DEnemy"]
+position = Vector2( 0, 12.829 )
 shape = SubResource( 9 )
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 0, -29 )
+position = Vector2( 0, -52.338 )

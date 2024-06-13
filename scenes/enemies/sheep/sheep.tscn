@@ -43,11 +43,11 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 15.0
-height = 12.0
+height = 0.0
 
 [sub_resource type="CapsuleShape2D" id=9]
 radius = 19.0
-height = 14.0
+height = 0.0
 
 [node name="Sheep" type="KinematicBody2D" groups=["enemies"]]
 scale = Vector2( 0.8, 0.8 )
@@ -55,15 +55,18 @@ script = ExtResource( 2 )
 health = 1
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -20 )
 frames = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -20 )
 shape = SubResource( 1 )
 
 [node name="Area2DEnemy" type="Area2D" parent="."]
+position = Vector2( 0, -20 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DEnemy"]
 shape = SubResource( 9 )
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 0, -29 )
+position = Vector2( 0, -45.231 )
