@@ -65,11 +65,13 @@ func _physics_process(_delta):
 		get_parent().add_child(scn)
 		#Drops colletables:
 		rng.randomize()
-		if (randi()%2==0):
+		var index_aleatory: float = randf()
+		print("index=",index_aleatory)
+		if (index_aleatory<=0.3):
 			var scene_drop_meat_instance = drop_meat.instance()
 			scene_drop_meat_instance.position = position
 			get_parent().add_child(scene_drop_meat_instance)
-		else:
+		elif (0.31<=index_aleatory and index_aleatory<=0.7):
 			var scene_drop_gold_instance = drop_gold.instance()
 			scene_drop_gold_instance.position = position
 			get_parent().add_child(scene_drop_gold_instance)
