@@ -3,10 +3,12 @@ Repositório para armazenar o jogo Tiny Combat feito para Bootcamp 2024 de Godot
 
 
 Sobreviva a ondas de inimigos em uma ilha deserta.
+
 Link do game: https://flaera.itch.io/tiny-survivor
 
 
 Instagram do dev: @flaeralds
+
 Jogo feito em Godot 3.5.
 
 Referências bibliográficas
