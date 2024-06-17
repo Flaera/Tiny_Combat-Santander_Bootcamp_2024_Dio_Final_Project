@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/player/player1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/mob_spawner/mob_spawner.tscn" type="PackedScene" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Deco/02.png" type="Texture" id=14]
 [ext_resource path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Terrain/Water/Water.png" type="Texture" id=15]
 [ext_resource path="res://scenes/tree/tree.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/difficult_system/difficult_system.gd" type="Script" id=17]
+[ext_resource path="res://scenes/main.gd" type="Script" id=18]
 
 [sub_resource type="TileSet" id=4]
 0/name = "Water.png 0"
@@ -390,7 +392,8 @@ extents = Vector2( 3187, 167.5 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 267, 1799.5 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Main" type="Node2D"]
+script = ExtResource( 18 )
 
 [node name="TileMap2Water" type="TileMap" parent="."]
 tile_set = SubResource( 4 )
@@ -550,6 +553,9 @@ rotation = -0.108712
 
 [node name="MobSpawner" parent="." instance=ExtResource( 2 )]
 position = Vector2( 514, 274 )
+
+[node name="NodeDifficultSystem" type="Node" parent="."]
+script = ExtResource( 17 )
 
 [node name="StaticBody2DWorldLimit" type="StaticBody2D" parent="."]
 collision_layer = 9

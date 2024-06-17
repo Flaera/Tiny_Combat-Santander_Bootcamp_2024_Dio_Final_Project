@@ -1,17 +1,22 @@
+class_name MobSpawner
 extends Node2D
 
 
 export var monsters0: PackedScene
 export var monsters1: PackedScene
 export var monsters2: PackedScene
-export var difficult_rate: float = 3.0
+export var difficult_rate: float = 1.0
+export var monsters_by_minute: float = 60.0
 onready var curr_monsters_by_minute: float = 60.0
-onready var monsters_by_minute: float = 60.0
 onready var path_follow: PathFollow2D  = get_node("Path2D/PathFollow2D")
-onready var interval: float = (curr_monsters_by_minute/monsters_by_minute) * difficult_rate
+onready var interval: float
 onready var monsters_array: Array
 onready var random_lib = RandomNumberGenerator.new()
 onready var cooldown: float = 0.0
+
+
+func calcDificultScale(var _delta: float):
+	return 3/difficult_rate
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,7 +28,10 @@ func _ready():
 
 
 func _process(delta):
+	if (GameManager.is_game_over==true): return
 	cooldown+=delta
+	interval = calcDificultScale(delta)
+	#print("interval=", interval)
 	if (cooldown>=interval):
 		random_lib.randomize()
 		var monster = (monsters_array[random_lib.randi_range(0,2)]).instance()

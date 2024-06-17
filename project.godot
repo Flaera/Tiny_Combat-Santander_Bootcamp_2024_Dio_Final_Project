@@ -8,15 +8,29 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "MobSpawner",
+"language": "GDScript",
+"path": "res://scenes/mob_spawner/mob_spawner.gd"
+} ]
+_global_script_class_icons={
+"MobSpawner": ""
+}
+
 [application]
 
-config/name="DIO Project"
+config/name="Tiny Survivor"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameManager="*res://scenes/game_manager.gd"
+
 [display]
 
-window/stretch/mode="2d"
+window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [gui]

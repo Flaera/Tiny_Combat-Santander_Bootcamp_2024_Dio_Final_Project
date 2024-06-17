@@ -1,0 +1,242 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/Tiny Swords/Tiny Swords (Update 010)/UI/Banners/Banner_Horizontal.png" type="Texture" id=1]
+[ext_resource path="res://BebasNeue-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/Tiny Swords/Tiny Swords (Update 010)/UI/Ribbons/Ribbon_Red_3Slides.png" type="Texture" id=3]
+[ext_resource path="res://scenes/ui/game_over_ui.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 192, 64 )
+margin_left = 40.0
+margin_right = 42.0
+axis_stretch_horizontal = 2
+
+[sub_resource type="DynamicFont" id=8]
+size = 55
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 1 )
+region_rect = Rect2( 30, 50, 130, 120 )
+margin_left = 30.0
+margin_right = 30.0
+margin_top = 10.0
+margin_bottom = 40.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="DynamicFont" id=10]
+size = 46
+outline_size = 3
+outline_color = Color( 0.458824, 0.458824, 0.458824, 0.188235 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=11]
+Label/colors/font_color = Color( 0, 0, 0, 0.815686 )
+Label/fonts/font = SubResource( 10 )
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRectBG:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BottonPanel:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 95, 303 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Panel:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 248, 88 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "default"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRectBG:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 4.75683 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BottonPanel:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 0.90125 ),
+"update": 0,
+"values": [ Vector2( 95, 700 ), Vector2( 95, 700 ), Vector2( 95, 303 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Panel:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 248, -180 ), Vector2( 248, 88 ) ]
+}
+
+[node name="GameOverUI" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="ColorRectBG" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -264.0
+margin_top = 88.0
+margin_right = 265.0
+margin_bottom = 202.0
+custom_styles/panel = SubResource( 7 )
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -93.5
+margin_top = -58.0
+margin_right = 94.5
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.341176, 0.0431373, 0.0431373, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "Game Over"
+align = 1
+valign = 1
+
+[node name="BottonPanel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -417.0
+margin_top = 303.0
+margin_right = 417.0
+margin_bottom = 558.0
+custom_styles/panel = SubResource( 9 )
+
+[node name="CenterContainer" type="CenterContainer" parent="BottonPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.5
+margin_top = -112.5
+margin_right = 277.5
+margin_bottom = 99.4999
+
+[node name="GridContainer" type="GridContainer" parent="BottonPanel/CenterContainer"]
+margin_left = 12.0
+margin_right = 521.0
+margin_bottom = 212.0
+custom_constants/vseparation = -4
+custom_constants/hseparation = 122
+columns = 2
+
+[node name="LabelTimeSurvived" type="Label" parent="BottonPanel/CenterContainer/GridContainer"]
+margin_right = 306.0
+margin_bottom = 56.0
+theme = SubResource( 11 )
+text = "Time survived:"
+
+[node name="LabelTSACC" type="Label" parent="BottonPanel/CenterContainer/GridContainer"]
+margin_left = 428.0
+margin_right = 509.0
+margin_bottom = 56.0
+theme = SubResource( 11 )
+text = "14:54"
+valign = 1
+
+[node name="LabelMonstersDefeated" type="Label" parent="BottonPanel/CenterContainer/GridContainer"]
+margin_top = 52.0
+margin_right = 306.0
+margin_bottom = 108.0
+theme = SubResource( 11 )
+text = "Monsters Defeated:"
+
+[node name="LabelMDACC" type="Label" parent="BottonPanel/CenterContainer/GridContainer"]
+margin_left = 428.0
+margin_top = 52.0
+margin_right = 509.0
+margin_bottom = 108.0
+theme = SubResource( 11 )
+text = "14"
+valign = 1
+
+[node name="LabelGolds" type="Label" parent="BottonPanel/CenterContainer/GridContainer"]
+margin_top = 104.0
+margin_right = 306.0
+margin_bottom = 160.0
+theme = SubResource( 11 )
+text = "Golds:"
+
+[node name="LabelGACC" type="Label" parent="BottonPanel/CenterContainer/GridContainer"]
+margin_left = 428.0
+margin_top = 104.0
+margin_right = 509.0
+margin_bottom = 160.0
+theme = SubResource( 11 )
+text = "14"
+valign = 1
+
+[node name="LabelMeats" type="Label" parent="BottonPanel/CenterContainer/GridContainer"]
+margin_top = 156.0
+margin_right = 306.0
+margin_bottom = 212.0
+theme = SubResource( 11 )
+text = "Meats:"
+
+[node name="LabelMACC" type="Label" parent="BottonPanel/CenterContainer/GridContainer"]
+margin_left = 428.0
+margin_top = 156.0
+margin_right = 509.0
+margin_bottom = 212.0
+theme = SubResource( 11 )
+text = "14"
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/RESET = SubResource( 12 )
+anims/default = SubResource( 13 )

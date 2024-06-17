@@ -24,6 +24,7 @@ onready var playing: bool = true
 
 onready var golds: int = 0
 onready var meats: int = 0
+onready var time_game: String
 
 
 func _process(delta):
@@ -104,7 +105,8 @@ func die():
 		get_parent().add_child(scn)
 		playing=false
 		get_node("AnimationPlayer").play("die")
-
+		GameManager.is_game_over=true
+		
 
 
 
@@ -120,7 +122,7 @@ func getDamageOfPlayer():
 	#print("groups=",get_tree().get_nodes_in_group("enemies"))
 	var bodies: Array = get_node("SwordArea2D").get_overlapping_bodies()
 	for body in bodies:
-		if (body.is_in_group("enemies")):
+		if (body.is_in_group("enemies") and playing==true):
 			var direction = (position-body.position).normalized()
 			var attack_direction: Vector2
 			if (get_node("WarriorYellow").flip_h==true):

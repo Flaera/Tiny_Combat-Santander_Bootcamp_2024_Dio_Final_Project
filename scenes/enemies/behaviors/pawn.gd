@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 onready var velocity: Vector2
 onready var is_running: bool = false
-onready var player: Object = get_node("/root/Node2D/Player")
+onready var player: Object = get_node("/root/Main/Player")
 onready var cooldown: float = 0.0
 onready var play_cooldown: bool = false
 onready var damage: int = 0
@@ -20,6 +20,8 @@ export var damage_hit: int = 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
+	if (GameManager.is_game_over==true): return
+	
 	player_position = player.position
 	var normal = (player_position - position).normalized()
 	var target_velocity: Vector2 = normal*speed*100.0
@@ -66,7 +68,7 @@ func _physics_process(_delta):
 		#Drops colletables:
 		rng.randomize()
 		var index_aleatory: float = randf()
-		print("index=",index_aleatory)
+		#print("index=",index_aleatory)
 		if (index_aleatory<=0.3):
 			var scene_drop_meat_instance = drop_meat.instance()
 			scene_drop_meat_instance.position = position
@@ -75,5 +77,6 @@ func _physics_process(_delta):
 			var scene_drop_gold_instance = drop_gold.instance()
 			scene_drop_gold_instance.position = position
 			get_parent().add_child(scene_drop_gold_instance)
-		
+		#Send the death:
+		get_parent().monsters_defeated_by_player+=1
 		queue_free()

@@ -105,6 +105,8 @@ bg_color = Color( 0, 0, 0, 1 )
 moving_platform_apply_velocity_on_leave = 2
 script = ExtResource( 2 )
 
+[node name="GameUIControl" parent="." instance=ExtResource( 8 )]
+
 [node name="WarriorYellow" type="Sprite" parent="."]
 position = Vector2( 3, -30 )
 texture = ExtResource( 1 )
@@ -148,5 +150,3 @@ custom_styles/fg = SubResource( 7 )
 custom_styles/bg = SubResource( 8 )
 value = 5.6
 percent_visible = false
-
-[node name="GameUIControl" parent="." instance=ExtResource( 8 )]
